@@ -18,3 +18,4 @@ New-Item -ItemType SymbolicLink -Path "$HOME\.ideavimrc" -Target "<path_to_actua
 ```
 ln -s "$HOME/.ideavimrc <path_to_actual_config>
 ```
+
