@@ -1,7 +1,10 @@
 [user]
-	name = Khang
+    name = "Khang"
+    email = "41323253+KhangWoei@users.noreply.github.com"
+
 [core]
     editor = nvim
+
 [alias]
     cleanb = "!f() { git branch --merged ${1-origin/main} | grep -v " ${1-main}$" | xargs -r git branch -d; }; f"
 
