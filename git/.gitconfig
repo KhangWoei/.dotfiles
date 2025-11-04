@@ -3,35 +3,38 @@
 [core]
     editor = nvim
 [alias]
-    bclean = "!f() { git branch --merged ${1-origin/main} | grep -v " ${1-main}$" | xargs -r git branch -d; }; f"
-    ca = commit --amend
-    ch = config --list --show-origin
-    co = "!f(){ git checkout $1; }; f"
-    cob = "!f(){ git checkout -b $1; }; f"
+    cleanb = "!f() { git branch --merged ${1-origin/main} | grep -v " ${1-main}$" | xargs -r git branch -d; }; f"
+
+    amend = commit --amend
+    amendf = commit --amend --no-edit
+
+    configurations = config --list --show-origin
+
+    main = switch main
+    new = "!f(){ git switch -c $1; }; f"
+    visit = "!f(){ git switch --detach $1; }; f"
+
+    standup = log --pretty=format:'%C(yellow)%h%Creset -%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset' --since yesterday
     pretty = log --graph --oneline --decorate --all
     graph = -c core.pager='less -SRF' log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''                    %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-    locate = "!f(){ git branch --all --contains $1; }; f"
-    locate-tag = "!f(){ git tag --contains $1; }; f"
-    ma = merge --abort
-    main = checkout main
-    merged-branches = "!f(){ git branch --merged $1; }; f"
-    mnff = "!f(){ git merge --no-ff $1; }; f"
-    non-merged-branches = "!f(){ git branch --no-merged $1; }; f"
+
+    findb = "!f(){ git branch --all --contains $1; }; f"
+    findt = "!f(){ git tag --contains $1; }; f"
+
     pf = push --force-with-lease
-    pr = "!f(){ git checkout -b $1 origin/$1; }; f"
-    ra = rebase --abort
-    rc = rebase --continue
-    rh = "!f(){ git reset --hard; git clean -f; }; f"
-    rho = "!f(){ git reset --hard origin/$1; git clean -f; }; f"
-    rhm = reset --hard origin/main
-    rom = rebase -i origin/main
-    st = status
-    standup = log --pretty=format:'%C(yellow)%h%Creset -%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset' --since yesterday
-    su = submodule update --init --recursive
+
+    abort = rebase --abort
+    continue = rebase --continue
+    rebase-to= "!f(){ rebase -i $1;} f"
+    
     uncommit = reset --soft HEAD^
-    up = "!f() { git ru; git rhm; git bclean; }; f"
+    restart = reset --hard origin/main
+    reload = "!f(){ git reset --hard origin/$1; git clean -f; }; f"
+    scratch = "!f(){ git reset --hard; git clean -f; }; f"
+
+    stat = status
+
     upstream = "!f() { git branch --set-upstream-to origin/${1}; }; f"
-    whereis = "!f(){ git branch --all --contains $1; }; f"
 
 [pull]
     rebase = true
