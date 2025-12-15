@@ -43,3 +43,10 @@ map <leader>cc <Action>(CollapseRegion)
 map <leader>ea <Action>(ExpandAllRegions)
 map <leader>ec <Action>(ExpandRegion)
 
+map <leader>ff <Action>(SelectInProjectView)
+
+map <leader>s <Action>(Switcher)
+map <leader>sf <Action>(ActivateProjectToolWindow)
+map <leader>ss <Action>(ActivateStructureToolWindow)
+map <leader>sd <Action>(ActivateDebugToolWindow)
+map <leader>sr <Action>(ActivateRunToolWindow)
