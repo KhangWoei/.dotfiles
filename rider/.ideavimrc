@@ -23,8 +23,20 @@ map <leader>su <Action>(ShowUsages)
 map <leader>si <Action>(ReSharperGotoImplementation)
 map <leader>pi <Action>(ParameterInfo)
 
-map <leader>ed <Action>(ShowErrorDescription)
-map <leader>en <Action>(GotoNextError)
-map <leader>eN <Action>(GotoPreviousError)
-
 map <leader>rf <Action>(RefactoringMenu)
+
+map <leader>bm <Action>(ToggleBookmark)
+map <leader>bms <Action>(ShowBookmarks)
+map [bm <Action>(GotoPreviousBookmark)
+map ]bm <Action>(GotoNextBookmark)
+
+map <leader>e <Action>(ShowErrorDescription)
+map [e <Action>(GotoPreviousError)
+map ]e <Action>(GotoNextError)
+
+map <leader>ca <Action>(CollapseAllRegions)
+map <leader>cc <Action>(CollapseRegion)
+
+map <leader>ea <Action>(ExpandAllRegions)
+map <leader>ec <Action>(ExpandRegion)
+
