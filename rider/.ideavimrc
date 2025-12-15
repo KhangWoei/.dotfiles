@@ -18,6 +18,9 @@ set incsearch
 
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 map <leader>b <Action>(ToggleLineBreakpoint)
+map <leader>bt <Action>(ToggleBreakpointEnabled)
+map <leader>be <Action>(EditBreakpoint)
+map <leader>bv <Action>(ViewBreakpoints)
 
 map <leader>su <Action>(ShowUsages)
 map <leader>si <Action>(ReSharperGotoImplementation)
