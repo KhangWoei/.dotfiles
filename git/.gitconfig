@@ -28,12 +28,10 @@
 
     abort = rebase --abort
     continue = rebase --continue
-    rebase-to= "!f(){ rebase -i $1;} f"
     
     uncommit = reset --soft HEAD^
-    restart = reset --hard origin/main
+    restart = "!f(){ git reset --hard; git clean -f; }; f"
     reload = "!f(){ git reset --hard origin/$1; git clean -f; }; f"
-    scratch = "!f(){ git reset --hard; git clean -f; }; f"
 
     stat = status
 
