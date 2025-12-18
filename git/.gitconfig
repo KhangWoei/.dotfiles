@@ -1,6 +1,5 @@
 [user]
     name = "Khang"
-    email = "41323253+KhangWoei@users.noreply.github.com"
 
 [core]
     editor = nvim
