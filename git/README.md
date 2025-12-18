@@ -13,3 +13,12 @@ By default git looks for multiple configuration files starting and prioritises c
 3. Repository - Highest priority
     - `<path_to_repository>/.git/config`
 
+## GitHub SSH configuration
+
+Ensure that the ssh config file has 
+```
+Host github.com
+    User git
+    IdentityFile $GITHUB_KEY
+```
+
