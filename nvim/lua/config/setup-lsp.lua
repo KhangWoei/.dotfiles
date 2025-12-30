@@ -40,7 +40,6 @@ local on_attach = function(_, bufnr)
     end, { desc = 'Format current buffer with LSP' })
 end
 
-vim.lsp.set_log_level("debug");
 
 -- document existing key chains
 require('which-key').register {
