@@ -9,94 +9,55 @@ local nvim_dap = {
     }
 }
 
-local function setup_dotnet(dap)
-    local netcoredbg_path = vim.fn.exepath("netcoredbg")
 
-    if netcoredbg_path == "" then
-        vim.notify("netcoredbg not found in PATH. Dotnet debugging will not be available.", vim.log.levels.WARN)
-        return
+function load_launch_json()
+    local root_dir = vim.fn.getcwd()
+    local clients = vim.lsp.get_active_clients()
+    if #clients > 0 and clients[1].config.root_dir then
+        root_dir = clients[1].config.root_dir
     end
 
-    dap.adapters.coreclr = {
-        type = "executable",
-        command = netcoredbg_path,
-        args = { "--interpreter=vscode" }
-    }
+    local launch_json_path = root_dir .. '/launch.json'
 
-    local function load_launch_json()
-        local root_dir = vim.fn.getcwd()
-        local clients = vim.lsp.get_active_clients()
-        if #clients > 0 and clients[1].config.root_dir then
-            root_dir = clients[1].config.root_dir
-        end
+    vim.notify("Looking for launch.json at: " .. launch_json_path, vim.log.levels.DEBUG)
 
-        local launch_json_path = root_dir .. '/launch.json'
-
-        vim.notify("Looking for launch.json at: " .. launch_json_path, vim.log.levels.DEBUG)
-
-        if vim.fn.filereadable(launch_json_path) == 0 then
-            vim.notify("launch.json not found at: " .. launch_json_path, vim.log.levels.DEBUG)
-            return nil
-        end
-
-        local ok, launch_data = pcall(vim.fn.json_decode, vim.fn.readfile(launch_json_path))
-
-        if not (ok and launch_data and launch_data.configurations) then
-            vim.notify("Failed to parse .vscode/launch.json", vim.log.levels.WARN)
-            return nil
-        end
-
-        local coreclr_configs = {}
-        for _, config in ipairs(launch_data.configurations) do
-            if config.type == "coreclr" then
-                if config.program and type(config.program) == "string" and not config.program:match("^/") then
-                    config.program = root_dir .. "/" .. config.program
-                end
-                if config.cwd and type(config.cwd) == "string" and not config.cwd:match("^/") then
-                    config.cwd = root_dir .. "/" .. config.cwd
-                end
-
-                table.insert(coreclr_configs, config)
-            end
-        end
-
-        return #coreclr_configs > 0 and coreclr_configs or nil
+    if vim.fn.filereadable(launch_json_path) == 0 then
+        vim.notify("launch.json not found at: " .. launch_json_path, vim.log.levels.DEBUG)
+        return nil
     end
 
-    dap.configurations.cs = {
-        {
-            type = "coreclr",
-            name = "launch - netcoredbg",
-            request = "launch",
-            program = function()
-                return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
-            end,
-        },
-        {
-            type = "coreclr",
-            name = "attach - netcoredbg",
-            request = "attach",
-            processId = require('dap.utils').pick_process,
-        }
-    }
+    local ok, launch_data = pcall(vim.fn.json_decode, vim.fn.readfile(launch_json_path))
 
-    -- Add launch.json configurations if available
-    local launch_configs = load_launch_json()
-    if launch_configs then
-        for _, config in ipairs(launch_configs) do
-            table.insert(dap.configurations.cs, config)
+    if not (ok and launch_data and launch_data.configurations) then
+        vim.notify("Failed to parse .vscode/launch.json", vim.log.levels.WARN)
+        return nil
+    end
+
+    local configs = {}
+    for _, config in ipairs(launch_data.configurations) do
+        if config.program and type(config.program) == "string" and not config.program:match("^/") then
+            config.program = root_dir .. "/" .. config.program
         end
+        if config.cwd and type(config.cwd) == "string" and not config.cwd:match("^/") then
+            config.cwd = root_dir .. "/" .. config.cwd
+        end
+
+        table.insert(configs, config)
     end
 
-    vim.notify("=== All CS Configurations ===", vim.log.levels.INFO)
-    for i, config in ipairs(dap.configurations.cs) do
-        vim.notify(string.format("Config %d: %s", i, vim.inspect(config)), vim.log.levels.INFO)
-    end
+    return #configs > 0 and configs or nil
 end
 
 function nvim_dap.config()
     local dap = require("dap")
-    setup_dotnet(dap)
+
+    local launch_configs = load_launch_json()
+
+    local dotnet = require("plugins.dap.dotnet")
+    dotnet.setup(dap, launch_configs)
+
+    local node = require("plugins.dap.node")
+    node.setup(dap, launch_configs)
 
     local dapui = require("dapui")
     dapui.setup()
@@ -106,12 +67,6 @@ function nvim_dap.config()
     end
     dap.listeners.before.launch.dapui_config = function()
         dapui.open()
-    end
-    dap.listeners.after.event_terminated.dapui_config = function()
-        dapui.close()
-    end
-    dap.listeners.after.event_exited.dapui_config = function()
-        dapui.close()
     end
 
     require("nvim-dap-virtual-text").setup()
