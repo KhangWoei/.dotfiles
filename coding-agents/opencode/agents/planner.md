@@ -1,6 +1,5 @@
-
 ---
-description: Gather and set requirements for a given goal 
+description: Gather and set requirements for a given goal
 mode: primary
 model: anthropic/claude-sonnet-4-20250514
 temperature: 0.1

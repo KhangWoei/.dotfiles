@@ -4,7 +4,6 @@
       "bash": "ask",
       "edit": "ask",
       "read": "ask",
-      "write": "ask",
       "grep": "allow",
       "glob": "allow",
       "list": "allow",
