@@ -1,5 +1,4 @@
 tags
-*.sh
 .luarc.json
 nvim
 bookmarks.db.json
