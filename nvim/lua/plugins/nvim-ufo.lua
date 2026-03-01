@@ -37,7 +37,7 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
     return newVirtText
 end
 
-function ufo.config()
+ufo.config = function()
     require('ufo').setup({
         provider_selector = function(bufnr, filetype, buftype)
             return { 'treesitter', 'indent' }
@@ -47,7 +47,7 @@ function ufo.config()
     })
 end
 
-function ufo.keys()
+ufo.keys = function()
     return {
         { "<leader>ea", require("ufo").openAllFolds,  desc = "[E]xpand [A]ll" },
         { "<leader>fa", require("ufo").closeAllFolds, desc = "[F]old [A]ll" },
