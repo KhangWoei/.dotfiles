@@ -1,9 +1,12 @@
 -- gitsigns.lua
 -- Adds git related signs to the gutter, as well as utilities for managing changes
 
-return {
+local gitsigns = {
   'lewis6991/gitsigns.nvim',
-  opts = {
+}
+
+gitsigns.config = function()
+  require('gitsigns').setup({
     -- See `:help gitsigns.txt`
     signs = {
       add = { text = '+' },
@@ -36,5 +39,7 @@ return {
         return '<Ignore>'
       end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
     end,
-  },
-}
+  })
+end
+
+return gitsigns
