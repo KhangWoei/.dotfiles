@@ -13,7 +13,7 @@ local highlight = {
     "Whitespace",
 }
 
-function indent_blankline.config()
+indent_blankline.config = function()
     require("ibl").setup({
         indent = { highlight = highlight, char = "" },
         whitespace = {
