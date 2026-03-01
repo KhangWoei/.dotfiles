@@ -9,12 +9,12 @@ local bookmarks = {
     }
 }
 
-function bookmarks.config()
+bookmarks.config = function()
     local opts = {}
     require("bookmarks").setup(opts)
 end
 
-function bookmarks.keys()
+bookmarks.keys = function()
     return {
         { "<leader>bm",  ":BookmarksMark<CR>",     desc = "[B]ook[M]ark current line" },
         { "<leader>bmc", ":BookmarksCommands<CR>", desc = "[B]ook[M]ark [C]ommands" },
