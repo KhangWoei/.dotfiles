@@ -4,7 +4,7 @@ local neoscroll = {
     "karb94/neoscroll.nvim"
 }
 
-function neoscroll.config()
+neoscroll.config = function()
     require('neoscroll').setup({
         mappings = {
             ['<C-u>'] = { 'scroll', { '-vim.wo.scroll', 'true', '250' } },
