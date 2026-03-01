@@ -48,7 +48,7 @@ function load_launch_json()
     return #configs > 0 and configs or nil
 end
 
-function nvim_dap.config()
+nvim_dap.config = function()
     local dap = require("dap")
 
     local launch_configs = load_launch_json()
@@ -72,7 +72,7 @@ function nvim_dap.config()
     require("nvim-dap-virtual-text").setup()
 end
 
-function nvim_dap.keys()
+nvim_dap.keys = function()
     local dap = require("dap");
     local dapui = require("dapui");
 
