@@ -9,7 +9,7 @@ local neotree = {
     }
 }
 
-function neotree.config()
+neotree.config = function()
     require("neo-tree").setup(
         {
             source_selector = {
@@ -49,7 +49,7 @@ function neotree.config()
     )
 end
 
-function neotree.keys()
+neotree.keys = function()
     return {
         { "<leader>n",  ":Neotree toggle <CR>",          desc = "Toggle [N]eotree" },
         { "<leader>nf", ":Neotree show filesystem <CR>", desc = "[N]eotree [F]ilesystem" },
