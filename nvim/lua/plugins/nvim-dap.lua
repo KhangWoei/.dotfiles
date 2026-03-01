@@ -12,7 +12,7 @@ local nvim_dap = {
 
 function load_launch_json()
     local root_dir = vim.fn.getcwd()
-    local clients = vim.lsp.get_active_clients()
+    local clients = vim.lsp.get_clients()
     if #clients > 0 and clients[1].config.root_dir then
         root_dir = clients[1].config.root_dir
     end

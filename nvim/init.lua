@@ -22,7 +22,9 @@ require('lazy').setup({
     { import = "plugins" },
     { import = "theme" }
   },
-}, {})
+}, {
+  rocks = { enabled = false },
+})
 
 
 require("config.setup-lsp")

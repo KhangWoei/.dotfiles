@@ -1,12 +1,12 @@
 -- render-markdown.nvim
 
-local rendermd = {
+return {
     'MeanderingProgrammer/render-markdown.nvim',
-    after = { 'nvim-treesitter' },
-    requires = { 'echasnovski/mini.nvim', opt = true },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
-        require('render-markdown').setup({})
+        require('render-markdown').setup({
+            html  = { enabled = false },
+            latex = { enabled = false },
+        })
     end,
 }
-
-return rendermd

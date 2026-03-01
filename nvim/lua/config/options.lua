@@ -66,6 +66,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     pattern = '*',
 })
 
+-- Disable unused providers to suppress warnings
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_node_provider    = 0
+vim.g.loaded_perl_provider    = 0
+vim.g.loaded_ruby_provider    = 0
+
 -- [[ Folding ]]
 vim.o.foldcolumn = '1' -- '0' is not bad
 vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
