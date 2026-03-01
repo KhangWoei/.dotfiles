@@ -4,7 +4,7 @@ local undotree = {
     lazy = false,
 }
 
-function undotree.keys()
+undotree.keys = function()
     return {
         { "<leader>u", ":UndotreeToggle <CR>", desc = "Toggle [U]ndotree" }
     }
