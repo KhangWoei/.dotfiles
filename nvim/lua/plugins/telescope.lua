@@ -20,7 +20,7 @@ local telescope = {
     },
 }
 
-function telescope.config()
+telescope.config = function()
     require('telescope').setup {
         defaults = {
             mappings = {
@@ -40,7 +40,7 @@ local function search_current_buffer()
     })
 end
 
-function telescope.keys()
+telescope.keys = function()
     return {
         { "<leader>srf", ":Telescope oldfiles <CR>",    desc = "[S]earch [R]ecent [F]iles" },
         { "<leader>sb",  ":Telescope buffers <CR>",     desc = "[S]earch [B]uffers" },
