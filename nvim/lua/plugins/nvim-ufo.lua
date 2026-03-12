@@ -49,8 +49,10 @@ end
 
 ufo.keys = function()
     return {
+        { "<leader>ca", require("ufo").closeAllFolds, desc = "[C]ollapse [A]ll" },
+        { "<leader>cc", "zc",                         desc = "[C]ollapse [C]urrent" },
         { "<leader>ea", require("ufo").openAllFolds,  desc = "[E]xpand [A]ll" },
-        { "<leader>fa", require("ufo").closeAllFolds, desc = "[F]old [A]ll" },
+        { "<leader>ec", "zo",                         desc = "[E]xpand [C]urrent" },
     }
 end
 
