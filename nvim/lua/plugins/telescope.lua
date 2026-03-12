@@ -45,10 +45,10 @@ telescope.keys = function()
         { "<leader>srf", ":Telescope oldfiles <CR>",    desc = "[S]earch [R]ecent [F]iles" },
         { "<leader>sb",  ":Telescope buffers <CR>",     desc = "[S]earch [B]uffers" },
         { "<leader>scb", search_current_buffer,         desc = "[S]earch [C]urrent [B]uffer" },
-        { "<leader>sd",  ":Telescope diagnostics <CR>", desc = "[S]earch [D]iagnostics" },
+        { "<leader>ld",  ":Telescope diagnostics <CR>", desc = "[L]SP [D]iagnostics" },
         { "<leader>sg",  ":Telescope live_grep <CR>",   desc = "[S]earch by [G]rep" },
         { "<leader>sgf", ":Telescope git_files <CR>",   desc = "[S]earch [G]it [F]iles" },
-        { "<leader>sf",  ":Telescope find_files <CR>",  desc = "[S]earch [F]iles" },
+        { "<leader>ff",  ":Telescope find_files <CR>",  desc = "[F]ind [F]iles" },
         { "<leader>sh",  ":Telescope help_tags <CR>",   desc = "[S]earch [H]elp" },
         { "<leader>skm", ":Telescope keymaps <CR>",     desc = "[S]earch [K]ey [M]aps" }
     }

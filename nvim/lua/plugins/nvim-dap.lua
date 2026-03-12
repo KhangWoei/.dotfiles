@@ -84,7 +84,8 @@ nvim_dap.keys = function()
         { "<leader>b",  dap.toggle_breakpoint,                                                     desc = "Toggle [B]reakpoint" },
         { "<leader>bc", function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = "Toggle [B]reakpoint, [C]onditional" },
         { "<leader>rc", dap.run_to_cursor,                                                         desc = "[R]un to [C]ursor" },
-        { "<leader>di", function() dapui.eval(nil, { enter = true }) end,                          desc = "[D]ebug [I]nspect" }
+        { "<leader>di", function() dapui.eval(nil, { enter = true }) end,                          desc = "[D]ebug [I]nspect" },
+        { "<leader>sd", function() dapui.open() end,                                               desc = "[S]how [D]ebug UI" }
     }
 end
 
