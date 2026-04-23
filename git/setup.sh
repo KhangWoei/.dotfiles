@@ -16,7 +16,9 @@ link() {
   echo "  linked: $dst -> $src"
 }
 
-echo "Configuring git -> $HOME/.gitconfig"
-link "$DOTFILES/.gitconfig" "$HOME/.gitconfig"
+DESTINATION="${XDG_CONFIG_HOME:-$HOME}"
+
+echo "Configuring git -> $DESTINATION/.gitconfig"
+link "$DOTFILES/.gitconfig" "$DESTINATION/.gitconfig"
 
 echo "Done."
