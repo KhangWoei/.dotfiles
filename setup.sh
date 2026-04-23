@@ -2,7 +2,7 @@
 set -euo pipefail
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SUBDIRS=(nvim git coding-agents rider tmux)
+SUBDIRS=(nvim git coding-agents rider tmux zshrc)
 
 usage() {
   echo "Usage: $(basename "$0") [$(IFS='|'; echo "${SUBDIRS[*]}")|all]"
@@ -29,7 +29,7 @@ case "$ARG" in
       run_setup "$subdir"
     done
     ;;
-  nvim|git|coding-agents|rider|tmux)
+  nvim|git|coding-agents|rider|tmux|zshrc)
     run_setup "$ARG"
     ;;
   *)
